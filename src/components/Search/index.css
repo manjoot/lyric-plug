@@ -3,3 +3,11 @@
 .App {
   text-align: center;
 }
+
+#lyrics {
+    padding: 12.5em;
+    padding-top: 1em;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  

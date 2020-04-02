@@ -37,11 +37,35 @@ function Search() {
     
         //When the api has done its thing, set the Lryics to what was passed
         request.then(response => {
+            //Temporary: Outputs it all blurted out
+            setCurrentLyrics(response.data.lyrics);
+
+            //Creates an array to split so I can output line by line
             const songLyrics = response.data.lyrics.split("\n");
             console.log("songLyrics Array", songLyrics);
 
         });
       };
+
+    //Function to create P of lyric
+
+    const CreateP = string  => {
+        return (
+        <>
+            <div>
+            {string}
+            <br />
+            </div>
+        </>
+        );
+    };
+
+    const InsertP = (string, index) => {
+        console.log("String and Index:", string, index);
+        CreateP(string)
+
+    };
+
 
     //Clearing the useStates of all and the Lyrics
 
@@ -92,7 +116,16 @@ function Search() {
                     </Button>
                 </Form.Item>
             </Form>
+
+            <div>
+                <br />
+                <div id="lyrics">{currentLyrics}</div>
+
+                 <br />
+            </div>
         </div>
+
+
     )
 }
 
