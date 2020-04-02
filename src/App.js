@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import wave from '../public/wave.svg';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import './App.css';
 
