@@ -26,7 +26,8 @@ function App() {
         <Content style={{ padding: '0 50px' }}>
           <div className="site-layout-content">
             <br />
-            <h1>Welcome! Type in your artist and song below!</h1>
+            <h1 style={{textAlign: "center"}}>Welcome! Type in your artist and song below!</h1>
+            <br />
             <Search />
           </div>
         </Content>

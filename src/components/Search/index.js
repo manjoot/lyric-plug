@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 //AntD Form Layout Declaration
 const layout = {
@@ -13,21 +13,11 @@ const layout = {
 
 //Where the form itself is stored
 const SongForm = () => {
-    const onFinish = values => {
-      console.log('Success:', values);
-    };
-  
-    const onFinishFailed = errorInfo => {
-      console.log('Failed:', errorInfo);
-    };
   
     return (
       <Form
         {...layout}
         name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <Form.Item
           label="Artist"
@@ -44,10 +34,14 @@ const SongForm = () => {
         >
           <Input />
         </Form.Item>
+
   
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
             Go
+          </Button>
+          <Button htmlType="reset" >
+            Reset
           </Button>
         </Form.Item>
       </Form>
