@@ -34,7 +34,6 @@ const SongForm = () => {
         >
           <Input />
         </Form.Item>
-
   
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
@@ -51,9 +50,11 @@ const SongForm = () => {
 //The main function which will be exported
 
 function Search() {
+    let songName = 'Placeholder'
     return (
         <div>
             <SongForm />
+            <br />
         </div>
     )
 }
