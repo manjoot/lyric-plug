@@ -40,19 +40,17 @@ function Search() {
         //When the api has done its thing, set the Lryics to what was passed
         request.then(response => {
             //Temporary: Outputs it all bluz
-            songLyrics = response.data.lyrics.split("\n");
-            console.log("songLyrics Array", songLyrics);
-
+            setCurrentLyrics(response.data.lyrics.split("\n"));
+            console.log("New Current Lyrics Array", currentLyrics);
         });
       };
 
-    //Function to create P of lyric
-
-
-    const InsertP = (string, index) => {
+    //Function to create link break of lyric
+    const lineBreak = (string, index) => {
         console.log("String and Index", string, index);
         return (
             <>
+                <br />
                 {string}
             </>
             );
@@ -69,6 +67,7 @@ function Search() {
         setCurrentSong("");
         setCurrentLyrics("");
         form.resetFields();
+        window.location.reload(false);
     };
 
     return (
@@ -114,7 +113,7 @@ function Search() {
 
             <div>
                 <br />
-                <div id="lyrics">{songLyrics.map(InsertP)}</div>
+                <div id="lyrics">{currentLyrics.map(lineBreak)}</div>
 
                  <br />
             </div>
