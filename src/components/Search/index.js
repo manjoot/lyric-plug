@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import axios from 'axios';
 import { Form, Input, Button } from 'antd';
 
 //AntD Form Layout Declaration
@@ -50,7 +51,21 @@ const SongForm = () => {
 //The main function which will be exported
 
 function Search() {
-    let songName = 'Placeholder'
+    //Declaring useStates for the artist and song
+    const [currentArtist, setCurrentArtist] = React.useState("");
+    const [currentSong, setCurrentSong] = React.useState("");
+
+    //Declaring useSate for Lyrics
+    const [currentLyrics, setCurrentLyrics] = React.useState([]);
+
+    //Fetching the Lyrics from the lyrics.ovh API
+
+    const fetchLyrics = () => {
+        //passing through API promise using http client axios
+        const request = axios.get(
+        `https://api.lyrics.ovh/v1/${currentArtist}/${currentSong}`
+        );
+        let songName = 'Placeholder'
     return (
         <div>
             <SongForm />
