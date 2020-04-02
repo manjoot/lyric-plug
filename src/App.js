@@ -1,5 +1,6 @@
 import React from 'react';
 import wave from './wave.svg';
+import logo from './Lyric Plug-logo-black.png'
 import Search from './components/Search/index'
 import { Layout, Menu } from 'antd';
 import './App.css';
@@ -25,6 +26,7 @@ function App() {
         {/* Content Section */}
         <Content style={{ padding: '0 50px' }}>
           <div className="site-layout-content">
+            <img height="125em" class="center" src={logo} alt='logo'/>
             <br />
             <h1 style={{textAlign: "center"}}>Welcome! Type in your artist and song below!</h1>
             <br />
