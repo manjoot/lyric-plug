@@ -12,45 +12,13 @@ const layout = {
     wrapperCol: { offset: 6, span: 12 },
   };
 
-//Where the form itself is stored
-const SongForm = () => {
-  
-    return (
-      <Form
-        {...layout}
-        name="basic"
-      >
-        <Form.Item
-          label="Artist"
-          name="Artist"
-          rules={[{ required: true, message: 'Please enter an artist name!' }]}
-        >
-          <Input />
-        </Form.Item>
-  
-        <Form.Item
-          label="Song"
-          name="song"
-          rules={[{ required: true, message: 'Please enter a song name!' }]}
-        >
-          <Input />
-        </Form.Item>
-  
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
-            Go
-          </Button>
-          <Button htmlType="reset" >
-            Reset
-          </Button>
-        </Form.Item>
-      </Form>
-    );
-  };
-
 //The main function which will be exported
 
 function Search() {
+    //Declaring the form itself as it's own entity
+    //for manipulation
+
+    const [form] = Form.useForm();
     //Declaring useStates for the artist and song
     const [currentArtist, setCurrentArtist] = React.useState("");
     const [currentSong, setCurrentSong] = React.useState("");
@@ -62,14 +30,68 @@ function Search() {
 
     const fetchLyrics = () => {
         //passing through API promise using http client axios
+        console.log('Fetching Lyrics')
         const request = axios.get(
-        `https://api.lyrics.ovh/v1/${currentArtist}/${currentSong}`
+          `https://api.lyrics.ovh/v1/${currentArtist}/${currentSong}`
         );
-        let songName = 'Placeholder'
+    
+        //When the api has done its thing, set the Lryics to what was passed
+        request.then(response => {
+            const songLyrics = response.data.lyrics.split("\n");
+            console.log("songLyrics Array", songLyrics);
+
+        });
+      };
+
+    //Clearing the useStates of all and the Lyrics
+
+    const onReset = () => {
+        setCurrentArtist("");
+        setCurrentSong("");
+        setCurrentLyrics("");
+        form.resetFields();
+    };
+
     return (
         <div>
-            <SongForm />
-            <br />
+            <Form
+                {...layout}
+                name="basic"
+                form={form}
+            >
+                <Form.Item
+                label="Artist"
+                name="Artist"
+                value={currentArtist}
+                rules={[{ required: true, message: 'Please enter an artist name!' }]}
+                onChange={event => {
+                    setCurrentArtist(event.target.value);
+                }}
+                >
+                <Input />
+                </Form.Item>
+        
+                <Form.Item
+                label="Song"
+                name="song"
+                value={currentSong}
+                rules={[{ required: true, message: 'Please enter a song name!' }]}
+                onChange={event => {
+                    setCurrentSong(event.target.value);
+                }}
+                >
+                <Input />
+                </Form.Item>
+        
+                <Form.Item {...tailLayout}>
+                    <Button type="primary" htmlType="submit" onClick={fetchLyrics}>
+                        Go
+                    </Button>
+                    <Button htmlType="button" onClick={onReset}>
+                        Reset
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
     )
 }
