@@ -3,6 +3,8 @@ import './index.css';
 import axios from 'axios';
 import { Form, Input, Button } from 'antd';
 
+let songLyrics = [];
+
 //AntD Form Layout Declaration
 const layout = {
     labelCol: { span: 6 },
@@ -37,11 +39,8 @@ function Search() {
     
         //When the api has done its thing, set the Lryics to what was passed
         request.then(response => {
-            //Temporary: Outputs it all blurted out
-            setCurrentLyrics(response.data.lyrics);
-
-            //Creates an array to split so I can output line by line
-            const songLyrics = response.data.lyrics.split("\n");
+            //Temporary: Outputs it all bluz
+            songLyrics = response.data.lyrics.split("\n");
             console.log("songLyrics Array", songLyrics);
 
         });
@@ -49,20 +48,16 @@ function Search() {
 
     //Function to create P of lyric
 
-    const CreateP = string  => {
-        return (
-        <>
-            <div>
-            {string}
-            <br />
-            </div>
-        </>
-        );
-    };
 
     const InsertP = (string, index) => {
-        console.log("String and Index:", string, index);
-        CreateP(string)
+        console.log("String and Index", string, index);
+        return (
+            <>
+                {string}
+            </>
+            );
+
+    
 
     };
 
@@ -119,7 +114,7 @@ function Search() {
 
             <div>
                 <br />
-                <div id="lyrics">{currentLyrics}</div>
+                <div id="lyrics">{songLyrics.map(InsertP)}</div>
 
                  <br />
             </div>
