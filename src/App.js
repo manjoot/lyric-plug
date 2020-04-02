@@ -1,14 +1,37 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Button } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 import './App.css';
+
+
+const { Header, Footer, Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      {/* Test button to verify that Antd is working */}
-      <Button type="primary">Test Button</Button>
+    <div>
+      {/* Layout Declaration */}
+      <Layout className="layout">
 
+        {/* Header and Navigation Menu */}
+        <Header>
+          <div className="logo" />
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1">Home</Menu.Item>
+            <Menu.Item key="2">About</Menu.Item>
+          </Menu>
+        </Header>
+
+        {/* Content Section */}
+        <Content style={{ padding: '0 50px' }}>
+          <div className="site-layout-content">
+            <br />
+            <p>Whatever I want goes in here</p>
+          </div>
+        </Content>
+
+        {/* Footer */}
+        <Footer style={{ textAlign: 'center' }}>Manjoot Narwal ©2020</Footer>
+      </Layout>
     </div>
   );
 }
