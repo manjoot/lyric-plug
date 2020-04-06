@@ -3,6 +3,7 @@ import logo from './assets/images/Lyric Plug-logo-black.png'
 import whitelogo from './assets/images/Lyric Plug-logo-white.png'
 import Search from './components/Search/index'
 import HotSongs from './components/HotSongs/index'
+import OurPicks from './components/OurPicks/index'
 import { Layout, Menu, Row, Col, Divider } from 'antd';
 import './App.css';
 
@@ -30,10 +31,12 @@ function App() {
               
             </Col>
 
-            {/* Hot Songs */}
+            {/*  Our Picks */}
             <Col span={11}>
               <div className="site-layout-content">
-                <HotSongs />
+                <h1>Our Picks</h1>
+                <Divider />
+                <OurPicks />
               </div>
             </Col>
           </Row>
