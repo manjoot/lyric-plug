@@ -6,7 +6,7 @@ import { Card } from 'antd';
 //Antd declaration to support more flexible content
 const { Meta } = Card;
 
-function TopSongs() {
+function HotSongs() {
 
     return (
         <Card
@@ -19,4 +19,4 @@ function TopSongs() {
     )
 }
 
-export default TopSongs;
+export default HotSongs;

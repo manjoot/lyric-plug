@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './assets/images/Lyric Plug-logo-black.png'
 import whitelogo from './assets/images/Lyric Plug-logo-white.png'
 import Search from './components/Search/index'
-import TopSongs from './components/TopSongs/index'
+import HotSongs from './components/HotSongs/index'
 import { Layout, Menu, Row, Col, Divider } from 'antd';
 import './App.css';
 
@@ -33,7 +33,7 @@ function App() {
             {/* Hot Songs */}
             <Col span={11}>
               <div className="site-layout-content">
-                <TopSongs />
+                <HotSongs />
               </div>
             </Col>
           </Row>
