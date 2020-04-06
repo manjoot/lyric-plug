@@ -1,8 +1,8 @@
 import React from 'react';
-import wave from './wave.svg';
-import logo from './Lyric Plug-logo-black.png'
-import whitelogo from './Lyric Plug-logo-white.png'
+import logo from './assets/images/Lyric Plug-logo-black.png'
+import whitelogo from './assets/images/Lyric Plug-logo-white.png'
 import Search from './components/Search/index'
+import TopSongs from './components/TopSongs/index'
 import { Layout, Menu, Row, Col } from 'antd';
 import './App.css';
 
@@ -35,11 +35,15 @@ function App() {
       </Row>
       {/* Content Section */}
       <Content style={{ padding: '0 50px' }}>
-          <div className="site-layout-content">
+          <div>
             <br />
             <h1 style={{textAlign: "center"}}>Welcome! Type in your artist and song below!</h1>
             <br />
             <Search />
+            <div className="site-layout-content">
+              <TopSongs />
+            </div>
+            
           </div>
           </Content>
           {/* Footer */}

@@ -24,3 +24,9 @@
 .App-link {
   color: #61dafb;
 }
+
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
