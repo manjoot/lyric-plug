@@ -11,6 +11,9 @@ const Home = () => {
     <div>
       <Navigation /> 
       <div className="site-layout-content">
+        <h1 style={{textAlign:"center", marginBottom: '1em'}}>
+          Reccomended for You
+        </h1>
         <OurPicks />
       </div>
     </div>
@@ -23,10 +26,7 @@ const SearchSong = () => {
   return (
     <div>
       <Navigation/>
-      <div className="site-layout-content">
-        <Search/>
-      </div>
-
+      <Search/>
     </div>
   );
 }
