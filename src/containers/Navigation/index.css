@@ -1,5 +1,12 @@
 @import '~antd/dist/antd.css';
 
+/* Menu Item */
+
+.menu-item {
+  color:#565555;
+}
+
+/* Header and Elements within */
 
 header {
   padding-bottom: 10em;
@@ -25,4 +32,4 @@ header nav {
     padding-left: 20px;
     margin-left: 20px;
   }
-  
+
