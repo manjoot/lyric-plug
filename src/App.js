@@ -21,7 +21,7 @@ function App() {
             <ul>
               <li style={{color: 'black', fontSize: '2em'}}>Lyric Plug</li>
               <li>home</li>
-              <li>about</li>
+              <li>search</li>
             </ul>
           </nav>
         </header>
