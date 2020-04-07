@@ -26,7 +26,10 @@ const SearchSong = () => {
   return (
     <div>
       <Navigation/>
-      <Search/>
+      <div className="site-layout-content">
+        <Search/>
+      </div>
+
     </div>
   );
 }
