@@ -4,64 +4,54 @@ import whitelogo from './assets/images/Lyric Plug-logo-white.png'
 import Search from './components/Search/index'
 import HotSongs from './components/HotSongs/index'
 import OurPicks from './components/OurPicks/index'
+import { Router, Link } from '@reach/router'
 import { Layout, Menu, Row, Col, Divider } from 'antd';
 import './App.css';
 
 
 const { Header, Footer, Content } = Layout;
 
-function App() {
+const Home = () => {
   return (
     <div>
-      
-      {/* Layout Declaration */}
-      <Layout className="layout">
-        <header>
-          <nav class="main-navigation">
-            <ul>
-              <li style={{color: 'black', fontSize: '2em'}}>Lyric Plug</li>
-              <li>home</li>
-              <li>search</li>
-            </ul>
-          </nav>
-        </header>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+      <header>
+        <nav class="main-navigation">
+          <ul>
+            <li style={{color: 'black', fontSize: '2em'}}>Lyric Plug</li>
+            <li><Link to="/" style={{ color: '#565555', textDecoration: 'inherit' }}>home</Link></li>
+            <li><Link to="search" style={{ color: '#565555', textDecoration: 'inherit' }}>search</Link></li>
+           </ul>
+        </nav>
+      </header>
 
-        {/* Content Section */}
-        <Content style={{ padding: '0 50px' }}>
-          <Row justify="space-between">
-            {/* Search Lyrics */}
-            <Col span={11}>
-              <div className="site-layout-content">
-                <h1 style={{textAlign: "center"}}>Welcome! Type in your artist and song below!</h1>
-                <br />
-                <Search />
-              </div>
-              
-            </Col>
-
-            {/*  Our Picks */}
-            <Col span={11}>
-              <div className="site-layout-content">
-                <h1>Our Picks</h1>
-                <Divider />
-                <OurPicks />
-              </div>
-            </Col>
-          </Row>
-
-        </Content>
-        
-        {/* Footer */}
-        <Footer style={{ textAlign: 'center' }}>Manjoot Narwal ©2020</Footer>
-        
-      </Layout>
     </div>
+
+  );
+}
+
+const SongSearch = () => {
+  return (
+    <div>
+      <Home />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Search />
+
+    </div>
+  );
+}
+
+function App() {
+  return (
+
+    <Router>
+      <Home path="/" />
+      <SongSearch path="search" />
+    </Router>
   );
 }
 
