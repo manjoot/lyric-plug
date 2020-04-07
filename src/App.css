@@ -26,9 +26,13 @@
 }
 
 .site-layout-content {
-  background: #fff;
-  padding: 24px;
+  background: #F5F5F5;
+  padding: 100px;
   min-height: 280px;
+  margin: 100px;
+  border-radius: 30px;
+  padding-top: 30px;
+  margin-top: 0px;
 }
 
 header nav {

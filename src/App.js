@@ -1,13 +1,20 @@
 import React from 'react';
 import Navigation from './containers/Navigation/index'
 import Search from './components/Search/index'
+import OurPicks from './components/OurPicks/index'
 import './App.css';
 import { Router } from '@reach/router'
 
 
 const Home = () => {
   return (
-    <Navigation />
+    <div>
+      <Navigation /> 
+      <div className="site-layout-content">
+        <OurPicks />
+      </div>
+    </div>
+    
 
   );
 }
@@ -16,7 +23,9 @@ const SearchSong = () => {
   return (
     <div>
       <Navigation/>
-      <Search/>
+      <div className="site-layout-content">
+        <Search/>
+      </div>
 
     </div>
   );
