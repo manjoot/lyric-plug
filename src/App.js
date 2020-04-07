@@ -16,9 +16,23 @@ function App() {
       
       {/* Layout Declaration */}
       <Layout className="layout">
-      <img class="center" src={logo} alt='logo'/>
+        <header>
+          <nav class="main-navigation">
+            <ul>
+              <li style={{color: 'black', fontSize: '2em'}}>Lyric Plug</li>
+              <li>home</li>
+              <li>about</li>
+            </ul>
+          </nav>
+        </header>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-      {/* Content Section */}
+        {/* Content Section */}
         <Content style={{ padding: '0 50px' }}>
           <Row justify="space-between">
             {/* Search Lyrics */}
