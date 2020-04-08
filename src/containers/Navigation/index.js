@@ -26,6 +26,15 @@ function Navigation() {
                     search
                 </Link>
               </li>
+
+              <li>
+                <Link 
+                className="menu-item"
+                to="charts" 
+                >
+                    charts
+                </Link>
+              </li>
              </ul>
           </nav>
         </header>
