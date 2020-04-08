@@ -4,6 +4,7 @@ import Footer from './containers/Footer/index'
 import Search from './components/Search/index'
 import OurPicks from './components/OurPicks/index'
 import Charts from './components/Charts/index'
+import Mood from './components/Mood/index'
 import './App.css';
 import { Router } from '@reach/router'
 
@@ -36,6 +37,7 @@ const Home = () => {
         <h1 style={{textAlign:"center", marginBottom: '1em'}}>
           Mood
         </h1>
+        <Mood />
       </div>
 
       {/* Reccomended for You */}
