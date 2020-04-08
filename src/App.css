@@ -25,20 +25,43 @@
   color: #61dafb;
 }
 
-.content-container {
+/* Flexbox Stuff */
+
+.top-gap {
+  width: 100%;
+  padding: 5px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.content-section {
+  /* Styling */
   background: #F5F5F5;
   padding: 100px;
   min-height: 280px;
   margin: 100px;
   border-radius: 30px;
   padding-top: 30px;
-  margin-top: 0px;
+  margin-top: 10px;
+  width: 100%;
+  /* Flexbox */
 
-  /* Flexbox stuff */
+  margin-bottom: 3%;
+  position: relative;
 
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; */
+}
+
+.welcome {
+  flex: 1;
+  margin-right: 0;
+}
+.mood {
+  flex: 2;
+  margin-left: 50px;
 }
 
 
