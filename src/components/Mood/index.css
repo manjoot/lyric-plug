@@ -15,4 +15,14 @@
   position: relative;
   color: black ;
   font-size: 5rem;
+  transition: transform 0.5s;
+}
+
+.item:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+label {
+  padding-left: 1.4em;
 }
