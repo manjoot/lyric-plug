@@ -21,7 +21,7 @@ function Navigation() {
               <li>
                 <Link 
                 className="menu-item"
-                to="search" 
+                to="/search" 
                 >
                     search
                 </Link>
@@ -30,7 +30,7 @@ function Navigation() {
               <li>
                 <Link 
                 className="menu-item"
-                to="charts" 
+                to="/charts" 
                 >
                     charts
                 </Link>
