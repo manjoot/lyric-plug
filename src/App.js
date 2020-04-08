@@ -37,6 +37,7 @@ const Home = () => {
         <h1 style={{textAlign:"center", marginBottom: '1em'}}>
           Mood
         </h1>
+        <p style={{textAlign:"center", marginBottom: '1em'}}>How are you feeling today?</p>
         <Mood />
       </div>
 
@@ -50,7 +51,8 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-      {/* <Footer /> */}
+      
+      
     </div>
     
 
