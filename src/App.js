@@ -3,6 +3,7 @@ import Navigation from './containers/Navigation/index'
 import Footer from './containers/Footer/index'
 import Search from './components/Search/index'
 import OurPicks from './components/OurPicks/index'
+import Charts from './components/Charts/index'
 import './App.css';
 import { Router } from '@reach/router'
 
@@ -39,12 +40,31 @@ const SearchSong = () => {
   );
 }
 
+const SongCharts = () => {
+  return (
+    <div>
+      <Navigation /> 
+      
+      {/* Flexbox Top Section */}
+
+      <div className="content-container">
+        <h1 style={{textAlign:"center", marginBottom: '1em'}}>
+          Charts
+        </h1>
+        <Charts />
+      </div>
+      <Footer />
+  </div>
+  );
+}
+
 function App() {
   return (
 
     <Router>
       <Home path="/" />
       <SearchSong path="search" />
+      <SongCharts path="charts" />
     </Router>
   );
 }
