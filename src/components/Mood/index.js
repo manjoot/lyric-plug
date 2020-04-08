@@ -5,9 +5,14 @@ import axios from 'axios';
 function Mood() {
 
     return (
-      <div>
-        Mood
-      </div>
+      <div class="container">
+        <div class="item">😁</div>
+        <div class="item">🤪</div>
+        <div class="item">😔</div>
+        <div class="item">🤮</div>
+
+
+    </div>
     )
 }
 
