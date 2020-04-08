@@ -10,7 +10,10 @@ const Home = () => {
   return (
     <div>
       <Navigation /> 
-      <div className="site-layout-content">
+      
+      {/* Flexbox Top Section */}
+
+      <div className="content-container">
         <h1 style={{textAlign:"center", marginBottom: '1em'}}>
           Reccomended for You
         </h1>
@@ -26,7 +29,7 @@ const SearchSong = () => {
   return (
     <div>
       <Navigation/>
-      <div className="site-layout-content">
+      <div className="content-container">
         <Search/>
       </div>
 

@@ -25,7 +25,7 @@
   color: #61dafb;
 }
 
-.site-layout-content {
+.content-container {
   background: #F5F5F5;
   padding: 100px;
   min-height: 280px;
@@ -33,7 +33,14 @@
   border-radius: 30px;
   padding-top: 30px;
   margin-top: 0px;
+
+  /* Flexbox stuff */
+
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; */
 }
+
 
 header nav {
   position: fixed;
