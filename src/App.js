@@ -1,43 +1,99 @@
 import React from 'react';
-import wave from './wave.svg';
-import logo from './Lyric Plug-logo-black.png'
+import Navigation from './containers/Navigation/index'
+import Footer from './containers/Footer/index'
 import Search from './components/Search/index'
-import { Layout, Menu } from 'antd';
+import OurPicks from './components/OurPicks/index'
+import Charts from './components/Charts/index'
+import Mood from './components/Mood/index'
 import './App.css';
+import { Router } from '@reach/router'
 
 
-const { Header, Footer, Content } = Layout;
+const Home = () => {
+  return (
+    <div className="content">
+      <Navigation /> 
+
+      <div className="top-gap">
+      </div>
+      
+      {/* Welcome Message */}
+
+      <div className="content-section welcome">
+        <h1 style={{textAlign:"center", marginBottom: '1em'}}>
+          Welcome!
+        </h1>
+        <p>
+          Searching for the lyrics of your favorite song? <br/>
+          <br />
+          Well your search ends now! We have a cloud based library
+          of some of the biggest tunes. Have a look around!
+        </p>
+      </div>
+
+      {/* Mood */}
+
+      <div className="content-section mood">
+        <h1 style={{textAlign:"center", marginBottom: '1em'}}>
+          Mood
+        </h1>
+        <p style={{textAlign:"center", marginBottom: '1em'}}>How are you feeling today?</p>
+        <Mood />
+      </div>
+
+      {/* Reccomended for You */}
+
+      <div className="content-section">
+        <h1 style={{textAlign:"center", marginBottom: '1em'}}>
+          Reccomended for You
+        </h1>
+        <OurPicks />
+      </div>
+
+      {/* Footer */}
+      
+      
+    </div>
+    
+
+  );
+}
+
+const SearchSong = () => {
+  return (
+    <div className="content">
+      <Navigation/>
+      <div className="content-section">
+        <Search/>
+      </div>
+
+    </div>
+  );
+}
+
+const SongCharts = () => {
+  return (
+    <div className="content">
+          <Navigation/>
+          <div className="content-section">
+            <h1 style={{textAlign:"center", marginBottom: '1em'}}>
+            Charts
+            </h1>
+            <Charts/>
+          </div>
+
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div>
-      {/* Layout Declaration */}
-      <Layout className="layout">
 
-        {/* Header and Navigation Menu */}
-        <Header>
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">Home</Menu.Item>
-            <Menu.Item key="2">About</Menu.Item>
-          </Menu>
-        </Header>
-
-        {/* Content Section */}
-        <Content style={{ padding: '0 50px' }}>
-          <div className="site-layout-content">
-            <img height="125em" class="center" src={logo} alt='logo'/>
-            <br />
-            <h1 style={{textAlign: "center"}}>Welcome! Type in your artist and song below!</h1>
-            <br />
-            <Search />
-          </div>
-        </Content>
-
-        {/* Footer */}
-        <Footer style={{ textAlign: 'center' }}>Manjoot Narwal ©2020</Footer>
-      </Layout>
-    </div>
+    <Router>
+      <Home path="/" />
+      <SearchSong path="search" />
+      <SongCharts path="charts" />
+    </Router>
   );
 }
 

@@ -1,0 +1,18 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.item {
+  margin-bottom: 3%;
+  position: relative;
+  color: black ;
+  font-size: 5rem;
+}

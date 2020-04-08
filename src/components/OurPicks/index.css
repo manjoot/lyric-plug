@@ -1,0 +1,17 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-item {
+  width: 240px;
+  margin-bottom: 3%;
+  position: relative;
+}
