@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from './containers/Navigation/index'
+import Footer from './containers/Footer/index'
 import Search from './components/Search/index'
 import OurPicks from './components/OurPicks/index'
 import './App.css';
@@ -19,6 +20,7 @@ const Home = () => {
         </h1>
         <OurPicks />
       </div>
+      <Footer />
     </div>
     
 
