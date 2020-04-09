@@ -3,7 +3,8 @@ import './index.css';
 import axios from 'axios';
 
 //Declaring antd import
-import { List, Typography, Divider } from 'antd';
+import { List, Select, Divider } from 'antd';
+const { Option } = Select;
 
 //Declaring TestData for table
 const data = [
@@ -50,7 +51,17 @@ function Charts() {
             <Divider orientation="left">Current Top 5</Divider>
             <List
                 size="large"
-                header={<div>UK Charts</div>}
+                header={<div>
+                    <b>Region:</b> <br/>
+                    <Select
+                        placeholder="Select a region to find the top charts there!"
+                        allowClear
+                    >
+                        <Option value="gb">UK</Option>
+                        <Option value="it">Italy</Option>
+                        <Option value="us">USA</Option>
+                    </Select>
+                    </div>}
                 footer={<div>*data from Apple Music*</div>}
                 bordered
                 dataSource={data}
