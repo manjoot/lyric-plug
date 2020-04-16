@@ -3,7 +3,8 @@ import './index.css';
 import axios from 'axios';
 
 //Declaring antd import
-import { List, Typography, Divider } from 'antd';
+import { List, Select, Divider } from 'antd';
+const { Option } = Select;
 
 //Declaring TestData for table
 const data = [
@@ -21,17 +22,27 @@ function Charts() {
 
     //Fetching the chart from API
     const fetchCharts = () => {
+
+        //Configuring API Key to Axios
+        const axiosConfig = {
+            headers: {
+                "api_key": process.env.CHARTS_API_KEY
+            }
+        };
+
         //Passing through API using axios http client
         console.log("Fetching Current Charts");
         const request = axios.get(
-            `https://30-000-radio-stations-and-music-charts.p.rapidapi.com/rapidapi`
+            //musixmatch - gets charts 
+            `https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=it&f_has_lyrics=1&apikey=${process.env.CHARTS_API_KEY}`,
+            // axiosConfig
         );
+
 
         //When the API has fetched the chart, then console.log it
         request.then(response => {
             //Console.log what is coming through the api
-            setCurrentChart(response.data)
-            console.log("Here's what current chart looks like:", currentChart);
+            console.log("Here's what current chart looks like:", response);
         })
     }
     return (
@@ -40,7 +51,17 @@ function Charts() {
             <Divider orientation="left">Current Top 5</Divider>
             <List
                 size="large"
-                header={<div>UK Charts</div>}
+                header={<div>
+                    <b>Region:</b> <br/>
+                    <Select
+                        placeholder="Select a region to find the top charts there!"
+                        allowClear
+                    >
+                        <Option value="gb">UK</Option>
+                        <Option value="it">Italy</Option>
+                        <Option value="us">USA</Option>
+                    </Select>
+                    </div>}
                 footer={<div>*data from Apple Music*</div>}
                 bordered
                 dataSource={data}
