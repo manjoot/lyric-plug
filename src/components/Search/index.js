@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import axios from 'axios';
-import { Form, Input, Button, Spin } from 'antd';
+import { Form, Input, Button, Spin, message } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 //AntD Form Layout Declaration
@@ -31,12 +31,28 @@ function Search() {
   const [currentLyrics, setCurrentLyrics] = React.useState([]);
 
   //Declaring useState for Loading
-  const [loading, setLoading] = React.useState(true);
+  const [notLoading, setNotLoading] = React.useState(true);
 
+  // Success and Faliure Messages
+  const successMessage = () => {
+    message.success('Lyrics Loaded Successfully!');
+  };
+
+  const faliureMessage = () => {
+    message.error(
+      "Oop... Looks like this song doesn't exist. Plz check your spelling."
+    );
+  };
+
+  const emptyMessage = () => {
+    message.warning(
+      "Wait! Looks like you've left one of (or both) boxes empty, please fill them in!"
+    );
+  };
   //Fetching the Lyrics from the lyrics.ovh API
 
   const fetchLyrics = () => {
-    setLoading(false);
+    setNotLoading(false);
     //passing through API promise using http client axios
     console.log('Fetching Lyrics');
     const request = axios.get(
@@ -45,10 +61,20 @@ function Search() {
 
     //When the api has done its thing, set the Lryics to what was passed
     request.then((response) => {
-      //Temporary: Outputs it all bluz
       setCurrentLyrics(response.data.lyrics.split('\n'));
-      setLoading(true);
+      setNotLoading(true);
       console.log('New Current Lyrics Array', currentLyrics);
+      successMessage();
+    });
+
+    //If there is the error, then the API displays error messages
+    request.catch((error) => {
+      if (currentSong == '' || currentArtist == '') {
+        emptyMessage();
+      } else {
+        faliureMessage();
+      }
+      setNotLoading(true);
     });
   };
 
@@ -113,9 +139,8 @@ function Search() {
       <div>
         <br />
         <div id="lyrics">
-          {currentLyrics.map(lineBreak)}
-          {loading ? (
-            currentLyrics
+          {notLoading ? (
+            currentLyrics.map(lineBreak)
           ) : (
             <Spin indicator={loadIcon} tip="Grabbing Lyrics" />
           )}
