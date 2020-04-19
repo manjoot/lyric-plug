@@ -1,7 +1,10 @@
 import React from 'react';
-import Navigation from '../containers/Navigation/index';
 import '../App.css';
 
+// Containers
+import Navigation from '../containers/Navigation/index';
+
+// Components
 import Mood from '../components/Mood/index';
 import OurPicks from '../components/OurPicks/index';
 
