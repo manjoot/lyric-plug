@@ -24,13 +24,6 @@ const Home = () => {
   return (
     <PosedContentContainer>
       <div className="content">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
         <div className="top-gap"></div>
 
         {/* Welcome Message */}
