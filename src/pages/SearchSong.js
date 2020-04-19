@@ -1,9 +1,6 @@
 import React from 'react';
 import '../App.css';
 
-// Containers
-import Navigation from '../containers/Navigation/index';
-
 // Components
 import Search from '../components/Search/index';
 
