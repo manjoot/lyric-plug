@@ -6,6 +6,11 @@ import OurPicks from './components/OurPicks/index'
 import Charts from './components/Charts/index'
 import Mood from './components/Mood/index'
 import './App.css';
+
+// Styled Components Imports
+import styled from 'styled-components'
+
+// Reach Router Imports
 import { Router } from '@reach/router'
 
 
