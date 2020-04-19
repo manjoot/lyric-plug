@@ -13,6 +13,9 @@ const tailLayout = {
   wrapperCol: { offset: 6, span: 12 },
 };
 
+//AntD Spinning Icon
+const loadIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 //The main function which will be exported
 
 function Search() {
