@@ -1,7 +1,10 @@
 import React from 'react';
-import Navigation from '../containers/Navigation/index';
 import '../App.css';
 
+// Containers
+import Navigation from '../containers/Navigation/index';
+
+// Components
 import Charts from '../components/Charts/index';
 
 const SongCharts = () => {
