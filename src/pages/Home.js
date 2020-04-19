@@ -24,7 +24,12 @@ const Home = () => {
   return (
     <PosedContentContainer>
       <div className="content">
-        <Navigation />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
         <div className="top-gap"></div>
 
