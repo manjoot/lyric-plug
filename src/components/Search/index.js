@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import axios from 'axios';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Spin } from 'antd';
 
 //AntD Form Layout Declaration
 const layout = {
