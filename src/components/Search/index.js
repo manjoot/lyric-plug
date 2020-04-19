@@ -3,8 +3,6 @@ import './index.css';
 import axios from 'axios';
 import { Form, Input, Button } from 'antd';
 
-let songLyrics = [];
-
 //AntD Form Layout Declaration
 const layout = {
   labelCol: { span: 6 },
