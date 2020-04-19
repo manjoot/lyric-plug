@@ -5,6 +5,7 @@ import './App.css';
 import Home from './pages/Home';
 import SearchSong from './pages/SearchSong';
 import SongCharts from './pages/SongCharts';
+import Navigation from './containers/Navigation/index';
 
 // Reach Router Imports
 import { Router, Location } from '@reach/router';
@@ -36,11 +37,14 @@ const PosedRouter = ({ children }) => (
 
 function App({ location }) {
   return (
-    <PosedRouter>
-      <Home path="/" />
-      <SearchSong path="search" />
-      <SongCharts path="charts" />
-    </PosedRouter>
+    <div>
+      <Navigation />
+      <PosedRouter>
+        <Home path="/" />
+        <SearchSong path="search" />
+        <SongCharts path="charts" />
+      </PosedRouter>
+    </div>
   );
 }
 
