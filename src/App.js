@@ -1,42 +1,14 @@
 import React from 'react';
-import Navigation from './containers/Navigation/index';
-import Footer from './containers/Footer/index';
-import Search from './components/Search/index';
-import OurPicks from './components/OurPicks/index';
-import Charts from './components/Charts/index';
-import Mood from './components/Mood/index';
 import './App.css';
 
-import Home from './pages/Home';
+// Page Imports
 
-// Styled Components Imports
-import styled from 'styled-components';
+import Home from './pages/Home';
+import SearchSong from './pages/SearchSong';
+import SongCharts from './pages/SongCharts';
 
 // Reach Router Imports
 import { Router } from '@reach/router';
-
-const SearchSong = () => {
-  return (
-    <div className="content">
-      <Navigation />
-      <div className="content-section">
-        <Search />
-      </div>
-    </div>
-  );
-};
-
-const SongCharts = () => {
-  return (
-    <div className="content">
-      <Navigation />
-      <div className="content-section">
-        <h1 style={{ textAlign: 'center', marginBottom: '1em' }}>Charts</h1>
-        <Charts />
-      </div>
-    </div>
-  );
-};
 
 function App() {
   return (
