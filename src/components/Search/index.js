@@ -1,7 +1,8 @@
 import React from 'react';
 import './index.css';
 import axios from 'axios';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Spin, message } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 //AntD Form Layout Declaration
 const layout = {
@@ -11,6 +12,9 @@ const layout = {
 const tailLayout = {
   wrapperCol: { offset: 6, span: 12 },
 };
+
+//AntD Spinning Icon
+const loadIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 //The main function which will be exported
 
@@ -23,12 +27,40 @@ function Search() {
   const [currentArtist, setCurrentArtist] = React.useState('');
   const [currentSong, setCurrentSong] = React.useState('');
 
-  //Declaring useSate for Lyrics
+  //Declaring useState for Lyrics
   const [currentLyrics, setCurrentLyrics] = React.useState([]);
 
+  //Declaring useState for Loading
+  const [notLoading, setNotLoading] = React.useState(true);
+
+  // Success and Faliure Messages
+  const successMessage = () => {
+    message.success('Lyrics Loaded Successfully!');
+  };
+
+  const faliureMessage = () => {
+    message.error(
+      "And I oop... (dead meme I know) Looks like this song doesn't exist. Please check your spelling!"
+    );
+  };
+
+  const emptyArtistInputMessage = () => {
+    message.warning('Wait! Looks like you forgot to enter an Artist!');
+  };
+
+  const emptySongInputMessage = () => {
+    message.warning('Wait! Looks like you forgot the enter a song!');
+  };
+
+  const emptyBothMessage = () => {
+    message.warning(
+      "Wait! Looks like you've left both boxes empty, please fill them in!"
+    );
+  };
   //Fetching the Lyrics from the lyrics.ovh API
 
   const fetchLyrics = () => {
+    setNotLoading(false);
     //passing through API promise using http client axios
     console.log('Fetching Lyrics');
     const request = axios.get(
@@ -37,9 +69,24 @@ function Search() {
 
     //When the api has done its thing, set the Lryics to what was passed
     request.then((response) => {
-      //Temporary: Outputs it all bluz
       setCurrentLyrics(response.data.lyrics.split('\n'));
+      setNotLoading(true);
       console.log('New Current Lyrics Array', currentLyrics);
+      successMessage();
+    });
+
+    //If there is the error, then the API displays error messages
+    request.catch((error) => {
+      if (currentSong == '' && currentArtist == '') {
+        emptyBothMessage();
+      } else if (currentSong == '' && !(currentArtist == '')) {
+        emptySongInputMessage();
+      } else if (!(currentSong == '') && currentArtist == '') {
+        emptyArtistInputMessage();
+      } else {
+        faliureMessage();
+      }
+      setNotLoading(true);
     });
   };
 
@@ -103,8 +150,13 @@ function Search() {
 
       <div>
         <br />
-        <div id="lyrics">{currentLyrics.map(lineBreak)}</div>
-
+        <div id="lyrics">
+          {notLoading ? (
+            currentLyrics.map(lineBreak)
+          ) : (
+            <Spin indicator={loadIcon} tip="Grabbing Lyrics" />
+          )}
+        </div>
         <br />
       </div>
     </div>
