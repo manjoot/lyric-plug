@@ -27,12 +27,16 @@ function Search() {
   const [currentArtist, setCurrentArtist] = React.useState('');
   const [currentSong, setCurrentSong] = React.useState('');
 
-  //Declaring useSate for Lyrics
+  //Declaring useState for Lyrics
   const [currentLyrics, setCurrentLyrics] = React.useState([]);
+
+  //Declaring useState for Loading
+  const [loading, setLoading] = React.useState(true);
 
   //Fetching the Lyrics from the lyrics.ovh API
 
   const fetchLyrics = () => {
+    setLoading(false);
     //passing through API promise using http client axios
     console.log('Fetching Lyrics');
     const request = axios.get(
@@ -43,6 +47,7 @@ function Search() {
     request.then((response) => {
       //Temporary: Outputs it all bluz
       setCurrentLyrics(response.data.lyrics.split('\n'));
+      setLoading(true);
       console.log('New Current Lyrics Array', currentLyrics);
     });
   };
@@ -107,8 +112,14 @@ function Search() {
 
       <div>
         <br />
-        <div id="lyrics">{currentLyrics.map(lineBreak)}</div>
-
+        <div id="lyrics">
+          {currentLyrics.map(lineBreak)}
+          {loading ? (
+            currentLyrics
+          ) : (
+            <Spin indicator={loadIcon} tip="Grabbing Lyrics" />
+          )}
+        </div>
         <br />
       </div>
     </div>
