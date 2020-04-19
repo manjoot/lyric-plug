@@ -40,13 +40,21 @@ function Search() {
 
   const faliureMessage = () => {
     message.error(
-      "Oop... Looks like this song doesn't exist. Plz check your spelling."
+      "And I oop... (dead meme I know) Looks like this song doesn't exist. Please check your spelling!"
     );
   };
 
-  const emptyMessage = () => {
+  const emptyArtistInputMessage = () => {
+    message.warning('Wait! Looks like you forgot to enter an Artist!');
+  };
+
+  const emptySongInputMessage = () => {
+    message.warning('Wait! Looks like you forgot the enter a song!');
+  };
+
+  const emptyBothMessage = () => {
     message.warning(
-      "Wait! Looks like you've left one of (or both) boxes empty, please fill them in!"
+      "Wait! Looks like you've left both boxes empty, please fill them in!"
     );
   };
   //Fetching the Lyrics from the lyrics.ovh API
@@ -69,8 +77,12 @@ function Search() {
 
     //If there is the error, then the API displays error messages
     request.catch((error) => {
-      if (currentSong == '' || currentArtist == '') {
-        emptyMessage();
+      if (currentSong == '' && currentArtist == '') {
+        emptyBothMessage();
+      } else if (currentSong == '' && !(currentArtist == '')) {
+        emptySongInputMessage();
+      } else if (!(currentSong == '') && currentArtist == '') {
+        emptyArtistInputMessage();
       } else {
         faliureMessage();
       }
