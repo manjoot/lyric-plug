@@ -9,12 +9,6 @@ import { Select } from 'antd';
 // Option component for each dropdown from antd
 const { Option } = Select;
 
-// Handles the change in a dropdown value (from Antd)
-
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
 // Column structure of table
 const columns = [
   {
@@ -83,10 +77,39 @@ function onChange(pagination, filters, sorter, extra) {
 
 function Charts() {
   //Declaring useState for current recieved charts list (from API)
-  const [currentChart, setCurrentChart] = React.useState([]);
-  const [currentRegion, setCurrentRegion] = React.useState([]);
-
-  const data = [currentChart];
+  const [currentChart, setCurrentChart] = React.useState([
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: ' ',
+      album_name: ' ',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+  ]);
+  const [currentRegion, setCurrentRegion] = React.useState('');
 
   //Fetching the chart from API
   const fetchCharts = () => {
@@ -101,7 +124,7 @@ function Charts() {
     console.log('Fetching Current Charts', process.env.REACT_APP_TEST_VAR);
     const request = axios.get(
       //musixmatch - gets charts
-      `https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=gb&f_has_lyrics=1&apikey=${process.env.REACT_APP_TEST_VAR}`
+      `https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=${currentRegion}&f_has_lyrics=1&apikey=${process.env.REACT_APP_TEST_VAR}`
       // axiosConfig
     );
 
@@ -112,14 +135,38 @@ function Charts() {
         "Here's what the API is giving to us:",
         response.data.message.body.track_list
       );
-      setCurrentChart(response.data.message.body.track_list);
-      console.log("Here's what current UK charts looks like:", currentChart);
+
+      setCurrentChart(
+        { ...currentChart },
+        response.data.message.body.track_list
+      );
+      console.log(`Here's what current charts looks like:`, currentChart);
     });
   };
+
+  // Handles the change in a dropdown value (from Antd)
+
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
+
+  //Handles the selection of a value
+
+  const handleSelect = (value) => {
+    setCurrentRegion(value);
+    console.log(currentRegion);
+    fetchCharts();
+  };
+
   return (
     <div>
       {/* Region Dropdown */}
-      <Select defaultValue="gb" style={{ width: 120 }} onChange={handleChange}>
+      <Select
+        placeholder="Select a Region"
+        style={{ width: 160 }}
+        onChange={handleChange}
+        onSelect={handleSelect}
+      >
         <Option value="gb">United Kingdom</Option>
         <Option value="us">United States</Option>
         <Option value="it">Italy</Option>
