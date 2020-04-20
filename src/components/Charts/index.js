@@ -3,21 +3,90 @@ import './index.css';
 import axios from 'axios';
 
 //Declaring antd import
-import { List, Select, Divider } from 'antd';
+import { Table } from 'antd';
+import { Select } from 'antd';
+
+// Option component for each dropdown from antd
 const { Option } = Select;
 
-//Declaring TestData for table
-const data = [
-  '1. Blinding Lights - The Weeknd',
-  '2. Roses (Imanbek Remix) - SAINt JHN',
-  '3. Physical - Dua Lipa',
-  '4. Dont Start Now - Dua Lipa',
-  '5. Lonely - Joel Corry',
+// Handles the change in a dropdown value (from Antd)
+
+function handleChange(value) {
+  console.log(`selected ${value}`);
+}
+
+// Column structure of table
+const columns = [
+  {
+    title: 'Position',
+    dataIndex: 'position',
+    sorter: {
+      compare: (a, b) => a.position - b.position,
+      multiple: 3,
+    },
+  },
+  {
+    title: 'Song',
+    dataIndex: 'track_name',
+  },
+  {
+    title: 'Name',
+    dataIndex: 'artist_name',
+  },
+  {
+    title: 'Album',
+    dataIndex: 'album_name',
+  },
 ];
+
+const testData = [
+  {
+    // key: '1',
+    position: '1',
+    track_name: 'Blinding Lights',
+    artist_name: 'The Weeknd',
+    album_name: 'After Hours',
+  },
+  {
+    position: '2',
+    key: '2',
+    track_name: "We'll Meet Again",
+    artist_name: 'Vera Lynn feat. Katherine Jenkins',
+    album_name: 'National Treasure - The Ultimate Collection',
+  },
+  {
+    position: '3',
+    key: '3',
+    track_name: 'Roses',
+    artist_name: 'SAINt JHN',
+    album_name: 'Collection One',
+  },
+  {
+    position: '4',
+    key: '4',
+    track_name: 'Falling',
+    artist_name: 'Harry Styles',
+    album_name: 'Fine Line',
+  },
+  {
+    position: '5',
+    key: '5',
+    track_name: 'Physical',
+    artist_name: 'Dua Lipa',
+    album_name: 'Future Nostalgia',
+  },
+];
+
+function onChange(pagination, filters, sorter, extra) {
+  console.log('params', pagination, filters, sorter, extra);
+}
 
 function Charts() {
   //Declaring useState for current recieved charts list (from API)
   const [currentChart, setCurrentChart] = React.useState([]);
+  const [currentRegion, setCurrentRegion] = React.useState([]);
+
+  const data = [currentChart];
 
   //Fetching the chart from API
   const fetchCharts = () => {
@@ -39,37 +108,35 @@ function Charts() {
     //When the API has fetched the chart, then console.log it
     request.then((response) => {
       //Console.log what is coming through the api
-      console.log("Here's what current chart looks like:", response);
+      console.log(
+        "Here's what the API is giving to us:",
+        response.data.message.body.track_list
+      );
+      setCurrentChart(response.data.message.body.track_list);
+      console.log("Here's what current UK charts looks like:", currentChart);
     });
   };
   return (
     <div>
-      {/* Charts Placeholder */}
-      <Divider orientation="left">Current Top 5</Divider>
-      <List
-        size="large"
-        header={
-          <div>
-            <b>Region:</b> <br />
-            <Select
-              placeholder="Select a region to find the top charts there!"
-              allowClear
-            >
-              <Option value="gb">UK</Option>
-              <Option value="it">Italy</Option>
-              <Option value="us">USA</Option>
-            </Select>
-          </div>
-        }
-        footer={<div>*data from Apple Music*</div>}
-        bordered
-        dataSource={data}
-        renderItem={(item) => <List.Item>{item}</List.Item>}
+      {/* Region Dropdown */}
+      <Select defaultValue="gb" style={{ width: 120 }} onChange={handleChange}>
+        <Option value="gb">United Kingdom</Option>
+        <Option value="us">United States</Option>
+        <Option value="it">Italy</Option>
+      </Select>
+
+      {/* Charts Table */}
+      <Table
+        columns={columns}
+        dataSource={testData}
+        style={{ paddingTop: '25px' }}
+        onChange={onChange}
+        pagination={{ pageSize: 20 }}
       />
 
-      {/* (TESTING ONLY) Test API Button */}
-      <br />
-      <button onClick={fetchCharts}>Click to test API</button>
+      {/* TESTING ONLY - fetchCharts Test */}
+      {/* <br />
+      <button onClick={fetchCharts}>Click to test API</button> */}
     </div>
   );
 }
