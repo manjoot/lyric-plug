@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './index.css';
+import LyricsModal from './../../containers/Modal/index';
 import axios from 'axios';
-import { Card, Row, Col, Modal, Button } from 'antd';
+import { Card } from 'antd';
 
 //Antd declaration to support more flexible content
 const { Meta } = Card;
@@ -50,7 +51,7 @@ function OurPicks() {
       <Card
         hoverable
         className="card-item"
-        onClick={displayModal}
+        onClick={console.log('clicked')}
         cover={
           <img
             alt="DaBaby"
@@ -108,6 +109,7 @@ function OurPicks() {
       >
         <Meta title="Lil Top - NBA Youngboy" />
       </Card>
+      <LyricsModal />
     </div>
   );
 }
