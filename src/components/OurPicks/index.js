@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import LyricsModal from './../../containers/Modal/index';
+import LyricsModal from '../../containers/LyricsModal/index';
 import axios from 'axios';
 import { Card } from 'antd';
 
@@ -43,7 +43,11 @@ function OurPicks() {
     );
   };
 
-  //Function that takes props through and displays a modal
+  //Functon to Display Modal
+  const displayModal = () => {
+    console.log('displayModal now working!');
+    return <LyricsModal visible="true" />;
+  };
 
   // Return Statement
   return (
@@ -51,7 +55,7 @@ function OurPicks() {
       <Card
         hoverable
         className="card-item"
-        onClick={console.log('clicked')}
+        onClick={displayModal()}
         cover={
           <img
             alt="DaBaby"
@@ -115,9 +119,5 @@ function OurPicks() {
 }
 
 // Function for Modal
-
-function lyricModal() {
-  return <div>Test</div>;
-}
 
 export default OurPicks;

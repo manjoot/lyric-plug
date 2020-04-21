@@ -3,18 +3,18 @@ import './index.css';
 
 import { Modal, Button } from 'antd';
 
-function LyricsModal() {
-  const [visible, setVisiblity] = useState(true);
-
+function LyricsModal(props) {
+  const [ModalVisible, setModalVisiblity] = useState(props.visible);
+  console.log(ModalVisible);
   const handleCancel = (e) => {
-    setVisiblity(false);
+    setModalVisiblity(false);
   };
 
   return (
     <div>
       <Modal
         title="Lyrics"
-        visible={visible}
+        visible={ModalVisible}
         onCancel={handleCancel}
         footer={false}
       >
