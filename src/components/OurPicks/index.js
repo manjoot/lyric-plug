@@ -7,55 +7,24 @@ import { Card } from 'antd';
 //Antd declaration to support more flexible content
 const { Meta } = Card;
 
+//Functon to Display Modal
+const displayModal = () => {
+  console.log('Card was clicked on!');
+  return (
+    <>
+      <LyricsModal IsModalVisible={true} artist="dababy" song="bop" />;
+    </>
+  );
+};
+
 function OurPicks() {
-  //Declaring useStates for the artist and song
-  const [currentArtist, setCurrentArtist] = React.useState('');
-  const [currentSong, setCurrentSong] = React.useState('');
-
-  //Declaring useState for Lyrics
-  const [currentLyrics, setCurrentLyrics] = React.useState([]);
-
-  //API Call
-  const fetchLyrics = (artist, song) => {
-    //passing through API promise using http client axios
-    console.log('Fetching Lyrics');
-    setCurrentArtist(artist);
-    setCurrentSong(song);
-    const request = axios.get(
-      `https://api.lyrics.ovh/v1/${currentArtist}/${currentSong}`
-    );
-
-    //When the api has done its thing, set the Lryics to what was passed
-    request.then((response) => {
-      setCurrentLyrics(response.data.lyrics.split('\n'));
-      console.log('New Current Lyrics Array', currentLyrics);
-    });
-  };
-
-  //Function to create link break of lyric
-  const lineBreak = (string, index) => {
-    console.log('String and Index', string, index);
-    return (
-      <>
-        <br />
-        {string}
-      </>
-    );
-  };
-
-  //Functon to Display Modal
-  const displayModal = () => {
-    console.log('displayModal now working!');
-    return <LyricsModal visible="true" />;
-  };
-
   // Return Statement
   return (
     <div className="card-container">
       <Card
         hoverable
         className="card-item"
-        onClick={displayModal()}
+        onClick={displayModal}
         cover={
           <img
             alt="DaBaby"
