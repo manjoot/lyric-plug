@@ -3,77 +3,189 @@ import './index.css';
 import axios from 'axios';
 
 //Declaring antd import
-import { List, Select, Divider } from 'antd';
+import { Table } from 'antd';
+import { Select } from 'antd';
+
+// Option component for each dropdown from antd
 const { Option } = Select;
 
-//Declaring TestData for table
-const data = [
-    '1. Blinding Lights - The Weeknd',
-    '2. Roses (Imanbek Remix) - SAINt JHN',
-    '3. Physical - Dua Lipa',
-    '4. Dont Start Now - Dua Lipa',
-    '5. Lonely - Joel Corry',
-  ];
+// Column structure of table
+const columns = [
+  {
+    title: 'Position',
+    dataIndex: 'position',
+    sorter: {
+      compare: (a, b) => a.position - b.position,
+      multiple: 3,
+    },
+  },
+  {
+    title: 'Song',
+    dataIndex: 'track_name',
+  },
+  {
+    title: 'Name',
+    dataIndex: 'artist_name',
+  },
+  {
+    title: 'Album',
+    dataIndex: 'album_name',
+  },
+];
+
+const testData = [
+  {
+    // key: '1',
+    position: '1',
+    track_name: 'Blinding Lights',
+    artist_name: 'The Weeknd',
+    album_name: 'After Hours',
+  },
+  {
+    position: '2',
+    key: '2',
+    track_name: "We'll Meet Again",
+    artist_name: 'Vera Lynn feat. Katherine Jenkins',
+    album_name: 'National Treasure - The Ultimate Collection',
+  },
+  {
+    position: '3',
+    key: '3',
+    track_name: 'Roses',
+    artist_name: 'SAINt JHN',
+    album_name: 'Collection One',
+  },
+  {
+    position: '4',
+    key: '4',
+    track_name: 'Falling',
+    artist_name: 'Harry Styles',
+    album_name: 'Fine Line',
+  },
+  {
+    position: '5',
+    key: '5',
+    track_name: 'Physical',
+    artist_name: 'Dua Lipa',
+    album_name: 'Future Nostalgia',
+  },
+];
+
+function onChange(pagination, filters, sorter, extra) {
+  console.log('params', pagination, filters, sorter, extra);
+}
 
 function Charts() {
+  //Declaring useState for current recieved charts list (from API)
+  const [currentChart, setCurrentChart] = React.useState([
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: ' ',
+      album_name: ' ',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+    {
+      position: '',
+      track_name: '',
+      artist_name: '',
+      album_name: '',
+    },
+  ]);
+  const [currentRegion, setCurrentRegion] = React.useState('');
 
-    //Declaring useState for current recieved charts list (from API)
-    const [currentChart, setCurrentChart] = React.useState([]);
+  //Fetching the chart from API
+  const fetchCharts = () => {
+    //Configuring API Key to Axios
+    const axiosConfig = {
+      headers: {
+        api_key: process.env.REACT_APP_TEST_VAR,
+      },
+    };
 
-    //Fetching the chart from API
-    const fetchCharts = () => {
-
-        //Configuring API Key to Axios
-        const axiosConfig = {
-            headers: {
-                "api_key": process.env.CHARTS_API_KEY
-            }
-        };
-
-        //Passing through API using axios http client
-        console.log("Fetching Current Charts");
-        const request = axios.get(
-            //musixmatch - gets charts 
-            `https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=it&f_has_lyrics=1&apikey=${process.env.CHARTS_API_KEY}`,
-            // axiosConfig
-        );
-
-
-        //When the API has fetched the chart, then console.log it
-        request.then(response => {
-            //Console.log what is coming through the api
-            console.log("Here's what current chart looks like:", response);
-        })
-    }
-    return (
-        <div>
-            {/* Charts Placeholder */}
-            <Divider orientation="left">Current Top 5</Divider>
-            <List
-                size="large"
-                header={<div>
-                    <b>Region:</b> <br/>
-                    <Select
-                        placeholder="Select a region to find the top charts there!"
-                        allowClear
-                    >
-                        <Option value="gb">UK</Option>
-                        <Option value="it">Italy</Option>
-                        <Option value="us">USA</Option>
-                    </Select>
-                    </div>}
-                footer={<div>*data from Apple Music*</div>}
-                bordered
-                dataSource={data}
-                renderItem={item => <List.Item>{item}</List.Item>}
-            />    
-
-            {/* (TESTING ONLY) Test API Button */}
-            <br />
-            <button onClick ={fetchCharts}>Click to test API</button>
-
-        </div>
+    //Passing through API using axios http client
+    console.log('Fetching Current Charts', process.env.REACT_APP_TEST_VAR);
+    const request = axios.get(
+      //musixmatch - gets charts
+      `https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=5&country=${currentRegion}&f_has_lyrics=1&apikey=${process.env.REACT_APP_TEST_VAR}`
+      // axiosConfig
     );
+
+    //When the API has fetched the chart, then console.log it
+    request.then((response) => {
+      //Console.log what is coming through the api
+      console.log(
+        "Here's what the API is giving to us:",
+        response.data.message.body.track_list
+      );
+
+      setCurrentChart(
+        { ...currentChart },
+        response.data.message.body.track_list
+      );
+      console.log(`Here's what current charts looks like:`, currentChart);
+    });
+  };
+
+  // Handles the change in a dropdown value (from Antd)
+
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
+
+  //Handles the selection of a value
+
+  const handleSelect = (value) => {
+    setCurrentRegion(value);
+    console.log(currentRegion);
+    fetchCharts();
+  };
+
+  return (
+    <div>
+      {/* Region Dropdown */}
+      <Select
+        placeholder="Select a Region"
+        style={{ width: 160 }}
+        onChange={handleChange}
+        onSelect={handleSelect}
+      >
+        <Option value="gb">United Kingdom</Option>
+        <Option value="us">United States</Option>
+        <Option value="it">Italy</Option>
+      </Select>
+
+      {/* Charts Table */}
+      <Table
+        columns={columns}
+        dataSource={testData}
+        style={{ paddingTop: '25px' }}
+        onChange={onChange}
+        pagination={{ pageSize: 20 }}
+      />
+
+      {/* TESTING ONLY - fetchCharts Test */}
+      {/* <br />
+      <button onClick={fetchCharts}>Click to test API</button> */}
+    </div>
+  );
 }
 
 export default Charts;

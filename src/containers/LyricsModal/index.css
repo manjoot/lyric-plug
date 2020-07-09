@@ -1,0 +1,8 @@
+@import '~antd/dist/antd.css';
+
+#lyrics {
+  padding: 12.5em;
+  padding-top: 1em;
+  font-size: 1.5em;
+  text-align: center;
+}
