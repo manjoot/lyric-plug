@@ -8,7 +8,7 @@ function LyricsModal(props) {
   //Declaring useState for Lyrics
   const [currentLyrics, setCurrentLyrics] = React.useState([]);
   //Declaring useState for visibility of modal
-  const [ModalVisible, setModalVisiblity] = useState(true);
+  const [ModalVisible, setModalVisiblity] = useState(false);
 
   const handleCancel = (e) => {
     setCurrentLyrics([]);
